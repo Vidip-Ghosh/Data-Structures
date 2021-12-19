@@ -1,0 +1,145 @@
+#include<stdio.h>
+void display(int a[],int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+}
+ 
+int insert_beg(int a[],int item,int size)
+{
+    printf("Enter item to be inserted: ");
+    scanf("%d",&item);
+    size++;
+    for(int i=size;i>=0;i--)
+    {
+        a[i+1] = a[i];
+    }
+    a[0] = item;
+    return size;
+}
+
+int insert_end(int a[],int item,int size)
+{
+    printf("Enter item to be inserted: ");
+    scanf("%d",&item);
+    size++;
+    a[size-1] = item;
+    return size;
+}
+int insert_pos(int a[],int size)
+{
+    int item, pos;
+    printf("Enter item to be inserted: ");
+    scanf("%d",&item);
+    printf("Enter position of an item: ");
+    scanf("%d",&pos);
+    for(int i=size;i>=pos;i--)
+    {
+        a[i] = a[i-1];
+    }
+    a[pos] = item;
+    size++;
+    return size;
+}
+
+void delete_beg(int a[],int size)
+{
+    printf("Deleted element is %d\n",a[0]);
+    for(int i=1;i<size;i++)
+    {
+        a[i-1] = a[i];
+    }
+    printf("Resultant array is: \n");
+    size--;
+    display(a,size);
+    
+}
+
+int delete_end(int a[],int size)
+{
+    printf("\n Resultant Array : ");
+    for(int i =0; i<size-1; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+    size--;
+    return size;
+}
+
+int delete_pos(int a[],int size)
+{
+    int pos;
+    printf("Enter position of an item: ");
+    scanf("%d",&pos);
+    printf("Loop started ");
+    for(int i=pos-1;i<size-1;i++)
+    {
+        a[i] = a[i+1];
+    }
+    size--;
+    printf("\n Resultant array : ");
+    display(a,size);
+    return size;
+}
+
+int main()
+{
+    int choice,a[100],size,item,position;
+    printf("Enter size of an array: ");
+    scanf("%d",&size);
+    printf("Enter elements of an array: ");
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    while(choice!=8)
+    {
+        printf("1. Display\n");
+        printf("2. Insert at beginning\n");
+        printf("3. Insert at end\n");
+        printf("4. Insert at specific position\n");
+        printf("5. Deletion at beginning\n");
+        printf("6. Deletion at end\n");
+        printf("7. Deletion at specific position\n");
+        printf("8. EXIT\n");
+        printf("\nEnter choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            display(a,size);
+            break;
+            
+            case 2:
+            size = insert_beg(a,item,size);
+            break;
+            
+            case 3:
+            size = insert_end(a,item,size);
+            break;
+            
+            case 4:
+            size = insert_pos(a,size);
+            break;
+            
+            case 5:
+            delete_beg(a,size);
+            break;
+            
+            case 6:
+            delete_end(a,size);
+            break;
+            
+            case 7:
+            size = delete_pos(a,size);
+            break;
+            
+            case 8:
+            printf("EXIT");
+            break;
+        }
+    }
+}
