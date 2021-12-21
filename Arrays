@@ -1,0 +1,70 @@
+//Print all the distinct elements of an array
+#include<stdio.h>
+int main()
+{
+    int a[100],i,j,size,temp,count=0;
+    printf("Enter of size of an array: ");
+    scanf("%d",&size);
+    printf("Enter elements of an array: ");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<size;i++)
+    {
+        for(j=i+1;j<size;j++)
+        {
+            if(a[i]>a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    printf("Array after sorting is: ");
+    for(i=0;i<size;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+    for(i=0;i<size;i++)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(a[i]==a[j])
+            {
+                break;
+            }
+        }
+        if(i==j)
+        {
+            printf("%d ",a[i]);
+        }
+    }
+}
+
+//Frequency of an element
+#include<stdio.h>
+int main()
+{
+    int a[100],i,size,key,count=0;
+    printf("Enter size of an array: ");
+    scanf("%d",&size);
+    printf("Enter elements of an array: ");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("Enter a number: ");
+    scanf("%d",&key);
+    for(i=0;i<size;i++)
+    {
+        if(a[i]==key)
+        {
+            count++;
+        }
+    }
+    printf("%d is %d times",key,count);
+}
+
