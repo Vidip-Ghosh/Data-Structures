@@ -1,0 +1,79 @@
+#include<iostream>
+using namespace std;
+#define MAX 5
+int Arr[MAX], front=-1,rear=-1;
+
+void Enqueue(int x)
+{
+    if(front==-1 && rear==-1)
+    {
+        rear = 0;
+        front = 0;
+        Arr[rear] = x;
+    }
+    else if((rear+1)%MAX == front)
+    {
+        printf("Queue is Overflow\n");
+    }
+    else
+    {
+        rear = (rear+1)%MAX;
+        Arr[rear]= x;
+    }
+}
+
+void Dequeue()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("Queue is Empty\n");
+    }
+    else
+    {
+        printf("Element removed from front is %d",Arr[front]);
+        front = (front+1)%MAX;
+    }
+}
+
+void display()
+{
+    for(int i=front;i<=rear;i++)
+    {
+        printf("%d ",Arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int choice,value;
+    while(choice!=4)
+    {
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Display\n");
+        printf("4. EXIT\n");
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            printf("Enter data to be inserted: ");
+            scanf("%d",&value);
+            Enqueue(value);
+            break;
+            
+            case 2:
+            Dequeue();
+            break;
+            
+            case 3:
+            display();
+            break;
+            
+            case 4:
+            printf("EXIT!!!");
+            break;
+        }
+    }
+}
