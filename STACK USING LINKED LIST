@@ -1,0 +1,88 @@
+#include<iostream>
+using namespace std;
+struct Stack{
+    int data;
+    Stack* next;
+};
+Stack* top = NULL;
+
+void push()
+{
+    int value;
+    printf("Enter value to be inserted: ");
+    scanf("%d",&value);
+    Stack* temp = new Stack;
+    temp->data = value;
+    temp->next = top;
+    top = temp;
+}
+
+void pop()
+{
+    
+    Stack* temp = new Stack;
+    if(top==NULL)
+    {
+        return;
+    }
+    temp = top;
+    top = top->next;
+    /*top->next = top;
+    temp->next = NULL;*/
+    free(temp);
+    printf("%d is removed from the stack",temp->data);
+}
+
+int top_element()
+{
+    printf("Top Element = %d",top->data);
+    return top->data;
+}
+void display()
+{
+    Stack* temp = new Stack;
+    temp = top;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp = temp->next;
+    }
+    printf("END\n");
+}
+
+int main()
+{
+    int choice;
+    while(choice!=5)
+    {
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Top\n");
+        printf("4. Display\n");
+        printf("5. EXIT\n");
+        printf("Enter the choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            push();
+            break;
+            
+            case 2:
+            pop();
+            break;
+            
+            case 3:
+            top_element();
+            break;
+            
+            case 4:
+            display();
+            break;
+            
+            case 5:
+            printf("EXITING!!!");
+            break;
+        }
+    }
+}
