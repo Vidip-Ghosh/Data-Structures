@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+};
+Node* front = NULL;
+Node* rear = NULL;
+void Enqueue(int x)
+{
+    Node* temp = new Node;
+    temp->data = x;
+    temp->next = NULL;
+    if(front == NULL && rear == NULL)//Queue is empty
+    {
+        front = rear = temp;
+        return;
+    }
+    rear->next = temp;
+    rear = temp;
+}
+
+void Dequeue()
+{
+    Node* temp = front;
+    if(front==NULL)
+    {
+        return;
+    }
+    if(front==rear)
+    {
+        front = rear = NULL;
+    }
+    else
+    {
+        front = front->next;
+    }
+    printf("Element removed from the Queue is %d\n",temp->data);
+    free(temp);
+}
+
+void display()
+{
+    Node* temp = front;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp = temp->next;
+    }
+    printf("END\n");
+}
+
+int main()
+{
+    int choice,value;
+    while(choice!=4)
+    {
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Display\n");
+        printf("4. EXIT\n");
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            printf("Enter the value to be inserted: ");
+            scanf("%d",&value);
+            Enqueue(value);
+            break;
+            
+            case 2:
+            Dequeue();
+            break;
+            
+            case 3:
+            display();
+            break;
+            
+            case 4:
+            printf("EXIT!!!");
+            break;
+        }
+    }
+}
