@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* right;
+    Node* left;
+};
+
+/*to store address of root node 
+                        pointer to root node setting tree as empty.*/
+Node* GetNewNode(Node* root,int data)
+{
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+Node* Insert(Node* root,int data)
+{
+    if(root==NULL)
+    {
+        root = GetNewNode(root,data);
+        return root;
+    }
+    else if(data <= root->data)
+    {
+        root->left = Insert(root->left,data);
+    }
+    else
+    {
+        root->right = Insert(root->right,data);
+    }
+    return root;
+}
+
+bool Search(Node* root,int data)
+{
+    if(root==NULL)
+    {
+        return false;
+    }
+    if(root->data==data)
+    {
+        return true;
+    }
+    else if(root->data<=data)
+    {
+        Search(root->right,data);
+    }
+    else
+    {
+        Search(root->left,data);
+    }
+}
+int main()
+{
+    Node* root = NULL;  
+    root = Insert(root,15);
+    root = Insert(root,10);
+    root = Insert(root,20);
+    root = Insert(root,25);
+    root = Insert(root,8);
+    root = Insert(root,12);
+    int number;
+    cout<<"Enter a number to be searched: ";
+    cin>>number;
+    if(Search(root,number)==true)
+    {
+        cout<<"Found"<<endl;
+    }
+    else
+    {
+        cout<<"Not Found"<<endl;
+    }
+}
