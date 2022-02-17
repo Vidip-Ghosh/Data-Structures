@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+Node* Insert(Node* root,int data)
+{
+    if(root==NULL)
+    {
+        root = GetNewNode(data);
+        return root;
+    }
+    else if(data<=root->data)
+    {
+        root->left = Insert(root->left,data);
+    }
+    else
+    {
+        root->right = Insert(root->right,data);
+    }
+    return root;
+}
+
+int FindMin(Node* root)
+{
+    Node* current = root;
+    while(current->left!=NULL)
+    {
+        current = current->left;
+    }
+    return current->data;
+}
+
+int main()
+{
+    int value;
+    Node* root = NULL;
+    root = Insert(root,15);
+    Insert(root,11);
+    Insert(root,12);
+    Insert(root,9);
+    cout<<"Minimum value is "<<FindMin(root)<<endl;
+}
