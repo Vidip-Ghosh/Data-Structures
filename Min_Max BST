@@ -1,0 +1,92 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Node* newNode(Node* root,int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+Node* Insert(Node* root,int data)
+{
+    if(root==NULL)
+    {
+        root = newNode(root,data);
+        return root;
+    }
+    else if(data<=root->data)
+    {
+        root->left = Insert(root->left,data);
+    }
+    else
+    {
+        root->right = Insert(root->right,data);
+    }
+    return root;
+}
+
+int FindMin(Node* root)
+{
+    Node* current = root;
+ 
+/* loop down to find the leftmost leaf */
+    while (current->left != NULL)
+    {
+        current = current->left;
+    }
+    return(current->data);
+}
+
+int FindMax(Node* root)
+{
+    Node* current = root;
+    while(current->right!=NULL)
+    {
+        //current = current->right;
+        return root->data;
+    }
+    return FindMax(root->right);
+}
+
+int main()
+{
+    Node* root = NULL;
+    int choice,value;
+    while(choice!=4)
+    {
+        cout<<"1. Insert"<<endl;
+        cout<<"2. FindMax"<<endl;
+        cout<<"3. FindMin"<<endl;
+        cout<<"4. EXIT"<<endl;
+        cout<<"Enter choice: ";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+            cout<<"Enter value to be inserted: ";
+            cin>>value;
+            Insert(root,value);
+            break;
+            
+            case 2:
+            FindMax(root);
+            break;
+            
+            case 3:
+            FindMin(root);
+            break;
+            
+            case 4:
+            cout<<"EXIT"<<endl;
+            break;
+        }
+    }
+}
