@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* right;
+    Node* left;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+int maxDepth(Node* root)
+{
+    if(root==NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        int lDepth = maxDepth(root->left);
+        int rDepth = maxDepth(root->right);
+        if(lDepth>rDepth)
+        {
+            return (lDepth+1);
+        }
+        else
+        {
+            return (rDepth+1);
+        }
+    }
+}
+
+int main()
+{
+    Node* root = GetNewNode(10);
+    root->left = GetNewNode(9);
+    root->right = GetNewNode(11);
+    root->right->right = GetNewNode(12);
+    root->left->left = GetNewNode(8);
+    cout<<"Max Height is "<<maxDepth(root);
+}
