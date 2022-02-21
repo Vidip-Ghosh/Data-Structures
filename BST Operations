@@ -1,0 +1,73 @@
+//Structure of a tree->
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+};
+
+//Get new node
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+
+//Insert operation
+void Insert(Node* root, int data)
+{
+    if(root==NULL)
+    {
+        return GetNewNode(data);
+    }
+    else if(root->data<=data)
+    {
+        root->left = Insert(root->left,data);
+    }
+    else
+    {
+        root->right = Insert(root->right,data);
+    }
+}
+
+//Searching in BST
+Node* Search(Node* root,int data)
+{
+    if(root->data==data)
+    {
+         return root;
+    }
+    else if(root->data<=data)
+    {
+         return Search(root->left,data);
+    }
+    else
+    {
+          return Search(root->right,data);
+    }
+}
+
+//Height of a Tree
+void Height(Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int lDepth = Height(root->left);
+        int rDepth = Height(root->right);
+        if(lDepth>rDepth)
+        {
+            return lDepth+1;
+        }
+        else
+        {
+            return rDepth+1;
+        }
+    }
+}
+
