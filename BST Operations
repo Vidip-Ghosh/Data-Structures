@@ -71,3 +71,23 @@ void Height(Node* root)
     }
 }
 
+//Merge 2 binary trees
+Node* MergeTrees(Node* root1,Node* root2)
+{
+      if(root1==NULL && root2==NULL)
+      {
+           return NULL;
+      }
+      if(root1==NULL)
+      {
+           return root2;
+      }
+      if(root2==NULL)
+      {
+           return root1;
+      }
+      root1->data+=root2->data;
+      root1->left = MergeTrees(root1->left,root2->left);
+      root1->right = MergeTrees(root1->right,root2->right);
+      return t1;
+}
