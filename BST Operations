@@ -91,3 +91,51 @@ Node* MergeTrees(Node* root1,Node* root2)
       root1->right = MergeTrees(root1->right,root2->right);
       return t1;
 }
+//Sum of root to leaf paths
+int treePathSumUtil(struct Node* root,int val)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    val = (val*10) + root->data;
+    if(root->left==NULL && root->right==NULL)
+    {
+        return val;
+    }
+    return treePathSumUtil(root->left,val) + treePathSumUtil(root->right,val);
+}
+int treePathSum(Node* root)
+{
+    if(root->right!=NULL && root->left!=NULL)
+    {
+        return treePathSumUtil(root,0);
+    }
+}
+
+//Check if the trees are at the same level
+bool CheckUtil(Node* root,int level,int* leaf_level)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    if(root->left==NULL && root->right==NULL)
+    {
+        //Got the leaf node for the first time
+        if(*leaf_level==level)
+        {
+            *leaf_level = level;
+            return true;
+        }
+        return level == *leaf_level;
+    }
+    //If this Node is not leaf, recursively check left and right subtrees.
+    return CheckUtil(root->left,level+1,leaf_level) && CheckUtil(root->right,level+1,leaf_level);
+}
+
+bool Check(Node* root)
+{
+    int leaf_level=0,level=0;
+    CheckUtil(root,level,&leaf_level);
+}
