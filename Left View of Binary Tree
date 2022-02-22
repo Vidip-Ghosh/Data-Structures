@@ -1,0 +1,50 @@
+//Left view of a Binary tree
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* right;
+    Node* left;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->right = NULL;
+    temp->left = NULL;
+    return temp;
+}
+//Utility function for left view
+void LeftViewUtil(Node* root,int level,int* max_level)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(*max_level<level)
+    {
+        printf("%d\t",root->data);
+        *max_level = level;
+    }
+    LeftViewUtil(root->left,level+1,max_level);
+    LeftViewUtil(root->right,level+1,max_level);
+}
+
+void LeftView(Node* root)
+{
+    int max_level = 0;
+    return LeftViewUtil(root,1,&max_level);
+}
+
+int main()
+{
+    Node* root = GetNewNode(3);
+    root->left = GetNewNode(2);
+    root->left->left = GetNewNode(1);
+    root->right = GetNewNode(4);
+    root->right->right = GetNewNode(5);
+    printf("Left view:\n");
+    LeftView(root);
+}
