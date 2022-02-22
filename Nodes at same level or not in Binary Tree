@@ -1,0 +1,58 @@
+//Check if all the nodes are at the same level
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* right;
+    Node* left;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+bool CheckLevelUtil(Node* root,int level,int* leaf_level)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    if(root->right==NULL && root->left==NULL)
+    {
+        if(*leaf_level==level)
+        {
+            *leaf_level = level;
+            return true;
+        }
+        return level == *leaf_level;
+    }
+    return CheckLevelUtil(root->left,level+1,leaf_level) && CheckLevelUtil(root->right,level+1,leaf_level);
+}
+
+bool CheckLevel(Node* root)
+{
+    int level=0,leaf_level=0;
+    return CheckLevelUtil(root,1,&leaf_level);
+}
+
+int main()
+{
+    Node* root = GetNewNode(3);
+    root->left = GetNewNode(2);
+    root->left->left = GetNewNode(1);
+    root->right = GetNewNode(4);
+    if(CheckLevel(root))
+    {
+        cout<<"TRUE. Same level"<<endl;
+    }
+    else
+    {
+        cout<<"Not at same level"<<endl;
+    }
+}
