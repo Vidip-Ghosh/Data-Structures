@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* right;
+    Node* left;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+void LeftLeavesSumUtil(Node* root,bool isLeft,int *sum)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(!root->left && !root->right && isLeft)
+    {
+        *sum = sum + root->data;
+    }
+    LeftLeavesSumUtil(root->left,1,sum);
+    LeftLeavesSumUtil(root->right,0,sum);
+}
+
+int LeftLeavesSum(Node* root)
+{
+    int sum=0;
+    LeftLeavesSumUtil(root,0,&sum);
+    return sum;
+}
+
+int main()
+{
+    int sum=0;
+    Node* root = GetNewNode(5);
+    root->left = GetNewNode(4);
+    root->left->left = GetNewNode(3);
+    root->right = GetNewNode(6);
+    root->right->left = GetNewNode(2);
+    cout<<"Sum\n";
+    LeftLeavesSum(root);
+}
