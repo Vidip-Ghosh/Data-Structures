@@ -1,0 +1,53 @@
+#include<iostream>
+#include<climits>
+#include<algorithm>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* right;
+    Node* left;
+};
+
+Node* GetNewNode(int data)
+{
+    Node* temp = new Node;
+    temp->data = data;
+    temp->right = NULL;
+    temp->left = NULL;
+    return temp;
+}
+
+int LargestSubTreeSumUtil(Node* root,int &ans)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int currSum = root->data + LargestSubTreeSumUtil(root->left,ans) + LargestSubTreeSumUtil(root->right,ans);
+    ans = max(ans,currSum);
+    return currSum;
+}
+
+int LargestSubTreeSum(Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int ans=0;
+    LargestSubTreeSumUtil(root,ans);
+    return ans;
+}
+
+int main()
+{
+    Node* root = GetNewNode(1);
+    root->left = GetNewNode(-2);
+    root->right = GetNewNode(3);
+    root->left->left = GetNewNode(4);
+    root->left->right = GetNewNode(5);
+    root->right->left = GetNewNode(-6);
+    root->right->right = GetNewNode(2);
+    cout<<LargestSubTreeSum(root);
+}
