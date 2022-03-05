@@ -1,1 +1,119 @@
+//Sorting in ascending order
+#include<stdio.h>
+int main()
+{
+	int i,j,a[100],size,temp;
+	printf("Enter size of an array: ");
+	scanf("%d",&size);
+	printf("Enter elements of an array: ");
+	for(i=0;i<size;i++)
+	{
+		for(j=i+1;j<size;j++)
+		{
+			if(a[i]>a[j])
+			{
+				temp=a[i];
+				a[i]=a[j];
+				a[j]=temp;
+			}
+		}
+	}
+	printf("Resultant array is: \n");
+	for(i=0;i<size;i++)
+	{
+		printf("%d ",a[i]);
+	}
+}
+//For descending order make a[j]>a[i]
+
+//LINEAR SEARCH
+#include<stdio.h>
+void linearSearch(int arr[],int key,int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]==key)
+        {
+            printf("Item found at location %d",i+1);
+            break;
+        }
+    }
+    if(key==size)
+    {
+        printf("Item not found");
+    }
+}
+int main()
+{
+    int a[100],i,key,size;
+    printf("Enter size of an array: ");
+    scanf("%d",&size);
+    printf("Enter elements of an array: ");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("Enter the item to be searched: ");
+    scanf("%d",&key);
+    linearSearch(a,key,size);
+}
+
+//LINEAR SEARCH FOR MULTIPLE OCCURENCES
+void linearSearch(int arr[],int key,int size)
+{
+		int count = 0; 										//Ex: a[5] = {1,1,2,3,5,8,8}
+    for(int i=0;i<size;i++)						//item to be searched->1
+    {																	//Output->1 found at location 1
+        if(arr[i]==key)								//1 found at location 2.
+        {
+            printf("Item found at location %d",i+1);
+            count++;
+        }
+    }
+    if(key==size)
+    {
+        printf("Item not found");
+    }
+}
+
+//BINARY SEARCH
+#include<stdio.h>
+int binarySearch(int a[],int beg,int end,int val)
+{
+    int mid;
+    mid = beg+end/2;
+    if(a[mid] == val)
+    {
+        return mid;
+    }
+    if(a[mid] < val)
+    {
+        beg = mid + 1;
+    }
+    if(a[mid] > val)
+    {
+        end = mid-1;
+    }
+}
+
+int main()
+{
+    int arr[100],output,num;
+    printf("Enter elements of an array: ");
+    for(int i=0;i<10;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    printf("Enter number to search: ");
+    scanf("%d",&num);
+    output = binarySearch(arr,0,9,num);
+    if (output == -1) 
+    {
+        printf("No match found");
+    } 
+    else 
+    {
+        printf("Match found at location %d",output);
+    }
+}
 
