@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int count(int A[],int n,int x)
+{
+    int count=0;
+    for(int i=0;i<n;i++)
+    if(x==A[i])
+    {
+        count++;
+    }
+    return count;
+}
+
+void PrintArray(int A[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+}
+
+int main()
+{
+    int n,A[100],i,x;
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+    printf("Enter elements of an array: ");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    PrintArray(A,n);
+    printf("Enter a number: ");
+    scanf("%d",&x);
+    int res = count(A,n,x);
+    printf("%d occurs %d times",x,res);
+    
+}
