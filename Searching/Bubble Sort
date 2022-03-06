@@ -1,0 +1,108 @@
+Method-1
+#include<iostream>
+using namespace std;
+
+void swap(int *a,int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void bubbleSort(int A[],int n)
+{
+    int i,j;
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-i-1;j++)
+        {
+            if(A[j]>A[j+1])
+            {
+                swap(&A[j],&A[j+1]);
+            }
+        }
+    }
+}
+
+void printArray(int A[],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int i,A[100],n;
+    printf("Enter size of an array: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    bubbleSort(A,n);
+    printf("Sorted array is: \n");
+    printArray(A,n);
+    
+}
+
+Method-2
+#include<iostream>
+using namespace std;
+
+void swap(int *a,int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void BubbleSort(int A[],int n)
+{
+    int i,j;
+    bool sorted;
+    for(i=0;i<n-1;i++)
+    {
+        sorted = false;
+        for(j=0;j<n-i-1;j++)
+        {
+            if(A[j]>A[j+1])
+            {
+                swap(&A[j],&A[j+1]);
+                sorted=true;
+            }
+        }
+        if(sorted==false)
+        {
+            break;
+        }
+    }
+}
+
+void PrintArray(int A[],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int i,n,A[100];
+    printf("Enter size of an array: ");
+    scanf("%d",&n);
+    printf("Enter elements of an array: ");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+    BubbleSort(A,n);
+    printf("Array after sorting: ");
+    PrintArray(A,n);
+}
