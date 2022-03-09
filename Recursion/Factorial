@@ -20,3 +20,28 @@ int main()
     int result = Factorial(n);
     cout<<"Factorial of a number is:"<<result;
 }
+
+
+//Modified Recursive call
+#include<iostream>
+using namespace std;
+int Factorial(int n)
+{
+    cout<<"I am calculating f("<<n<<")\n";
+    if(n==0)
+    {
+        return 1;
+    }
+    int F = n*Factorial(n-1);
+    cout<<"Done! f("<<n<<")\n";
+    return F;
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter a number: "<<endl;
+    cin>>n;
+    int result = Factorial(n);
+    cout<<"Factorial of a number is:"<<result;
+}
