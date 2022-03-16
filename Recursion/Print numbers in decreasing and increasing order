@@ -10,6 +10,16 @@ int dec(int n)
     dec(n-1);
 }
 
+int inc(int n)
+{
+    if(n==0)
+    {
+        return 0;
+    }
+    inc(n-1);
+    cout<<n<<endl;
+}
+
 int main()
 {
     int n;
@@ -17,4 +27,6 @@ int main()
     cin>>n;
     cout<<"Numbers in decreasing order: "<<endl;
     dec(n);
+    cout<<"Numbers in increasing order: "<<endl;
+    inc(n);
 }
