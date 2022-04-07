@@ -30,36 +30,4 @@ int main()
     {
         cout<<"Pair does not exist"<<endl;
     }
-}#include<iostream>
-using namespace std;
-bool TwoSum(int arr[],int size,int sum)
-{
-    for(int i=0;i<size-1;i++)
-    {
-        for(int j=i+1;j<size;j++)
-        {
-            if(arr[i]+arr[j]==sum)
-            {
-                cout<<"Pair with a given sum"<<sum<<"is ("<<arr[i]<<","<<arr[j]<<")"<<endl;
-                return 1;
-            }
-            
-        }
-    }
-    return 0;
-}
-
-int main()
-{
-    int arr[] = {1,4,5,-1,9};
-    int size = sizeof(arr)/sizeof(arr[0]);
-    int sum=3;
-    if(TwoSum(arr,size,sum))
-    {
-        cout<<"Pair is valid"<<endl;
-    }
-    else
-    {
-        cout<<"Pair does not exist"<<endl;
-    }
 }
