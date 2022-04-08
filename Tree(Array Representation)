@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+using namespace std;
+char tree[10];
+int root(char key)
+{
+    if(tree[0]!='\0')   //Tree starting from position zero.
+    {
+        printf("Tree already has a head.");
+    }
+    else
+    {
+        tree[0] = key;
+    }
+    return 0;
+}
+
+int set_left(char key,int parent)
+{
+    if(tree[parent]=='\0')
+    {
+        printf("Can't set at %d position\n",(2*parent)+1);
+    }
+    else
+    {
+        tree[(parent*2)+1] = key;
+    }
+    return 0;
+}
+
+int set_right(char key,int parent)
+{
+    if(tree[parent]=='\0')
+    {
+        printf("Can't set at %d position\n",(2*parent)+2);
+    }
+    else
+    {
+        tree[(2*parent)+2] = key;
+    }
+    return 0;
+}
+
+int printTree()
+{
+    for(int i=0;i<10;i++)
+    {
+        if(tree[i]!='\0')
+        {
+            printf("%d ",tree[i]);
+        }
+        else
+        {
+            printf("-");
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    root('A');
+  //insert_left('B',0);
+  set_right('C', 0);
+  set_left('D', 1);
+  set_right('E', 1);
+  set_right('F', 2);
+  printTree();
+  return 0;
+}
