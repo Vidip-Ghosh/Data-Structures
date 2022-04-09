@@ -1,0 +1,119 @@
+#include<iostream>
+using namespace std;
+struct Stack 
+{
+    int size;
+    int top;
+    int *s;
+};
+
+void Create(Stack *st)
+{
+    printf("Enter size of a Stack: ");
+    scanf("%d",&st->size);
+    st->top = -1;
+    st->s = (int*)malloc(st->size*sizeof(int));
+}
+
+void push(Stack* st,int x)
+{
+    if(st->top==st->size-1)
+    {
+        printf("Stack is full");
+    }
+    else
+    {
+        st->top++;
+        st->s[st->top] = x;
+    }
+}
+
+void pop(Stack* st)
+{
+    int x=-1;
+    if(st->top==-1)
+    {
+        printf("Stack is Empty");
+    }
+    else
+    {
+        x = st->s[st->top];
+        st->top--;
+        printf("The element removed from the stack is %d",x);
+    }
+}
+
+int peek(Stack st,int pos)
+{
+    int x=-1;
+    if(st.top-pos+1 < 0)
+    {
+        printf("Invalid position");
+    }
+    else
+    {
+        x = st.s[st.top-pos+1];
+    }
+    return x;
+}
+
+int isEmpty(Stack* st)
+{
+    if(st->top==-1)
+    {
+        printf("Stack is Empty");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+bool isFull(Stack* st)
+{
+    if(st->top==st->size-1)
+    {
+        printf("Stack is Full");
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int stackTop(Stack st)
+{
+    if(st.top==-1)
+    {
+        return -1;
+    }
+    else
+    {
+        return st.s[st.top];
+    }
+}
+
+void display(Stack* st)
+{
+    int i;
+    for(i=st->top;i>=0;i--)
+    {
+        printf("%d ",st->s[st->top]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    struct Stack st;
+    Create(&st);
+    push(&st,10);
+    push(&st,20);
+    push(&st,30);
+    push(&st,40);
+    printf("%d \n",peek(st,2));
+
+    display(&st);
+}
