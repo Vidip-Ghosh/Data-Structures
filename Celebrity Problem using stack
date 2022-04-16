@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define N 8
+
+bool MATRIX[N][N] = {{0, 0, 1, 0},
+                    {0, 0, 1, 0},
+                    {0, 0, 0, 0},
+                    {0, 0, 1, 0}};
+
+bool knows(int a,int b)
+{
+    return MATRIX[a][b];
+}
+int findCelebrity(int n)
+{
+    stack<int> s;
+    for(int i=0;i<n;i++)
+    {
+        s.push(i);  //Push every element into the stack.
+    }
+    int count = 0;
+    while(count<n-1)
+    {
+        int first = s.top();
+        s.pop();
+        int second = s.top();
+        s.pop();
+        if(knows(first,second))
+        {
+            s.push(second);
+        }
+        else
+        {
+            s.push(first);
+        }
+        count++;
+    }
+    int celebrity = s.top();
+    //s.pop();
+    return celebrity;
+}
+
+int main()
+{
+    int n = 4;
+    int id = findCelebrity(n);
+    id == -1 ? cout << "No celebrity" :
+               cout << "Celebrity ID " << id;
+    return 0;
+}
