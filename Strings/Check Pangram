@@ -1,0 +1,45 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+bool checkPangram(string s)
+{
+    vector<bool> check(26,false);
+    int index;
+    
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]>='A' && s[i]<='Z')
+        {
+            index = s[i]-'A';
+        }
+        else if(s[i]>='a' && s[i]<='z')
+        {
+            index = s[i]-'a';
+        }
+        else
+        {
+            continue;
+        }
+        s[index] = true;
+    }
+    for(int i=0;i<26;i++)
+    {
+        if(s[i]==true)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main()
+{
+    string str = "The quick brown fox jumps over the"
+                 " lazy dog";
+    if (checkPangram(str) == true)
+        printf(" %s is a pangram", str.c_str());
+    else
+        printf(" %s is not a pangram", str.c_str());
+    return (0);
+}
