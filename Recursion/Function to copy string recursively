@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+void myCopy(char c1[],char c2[],int i=0)
+{
+    c2[i] = c1[i];
+    if(c1[i]=='\0')
+    {
+        return;
+    }
+    myCopy(c1,c2,i+1);
+}
+
+int main()
+{
+    char s1[100] = "GEEKSFORGEEKS";
+    char s2[100] = "";
+    myCopy(s1,s2);
+    cout<<"Copied string is: "<<s2;
+}
