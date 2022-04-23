@@ -1,0 +1,27 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+void Initials(string name)
+{
+    if(name.length()==0)
+    {
+        return;
+    }
+    
+    cout<<(name[0])<<endl;
+    
+    for(int i=1;i<name.length()-1;i++)
+    {
+        if(name[i]==' ')
+        {
+            cout<<(name[i+1])<<endl;
+        }
+    }
+}
+
+int main()
+{
+    string s = "frontend web development";
+    Initials(s);
+}
