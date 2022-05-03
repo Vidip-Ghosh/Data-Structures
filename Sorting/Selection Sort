@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+
+void swap(int *a,int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void SelectionSort(int A[],int n)
+{
+    int i,j,min_index;
+    for(i=0;i<n-1;i++)
+    {
+        min_index = i;
+        for(j=i+1;j<n;j++)
+        {
+            if(A[j]<A[min_index])
+            {
+                min_index = j;
+            }
+            
+        }
+        swap(&A[min_index],&A[i]);
+    }
+}
+
+void printArray(int A[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+}
+
+int main()
+{
+    int arr[] = {64, 25, 12, 22, 11}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    SelectionSort(arr, n); 
+    cout << "Sorted array: \n"; 
+    printArray(arr, n); 
+    return 0;
+}
