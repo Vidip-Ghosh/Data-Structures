@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+
+int fact(int n)
+{
+    if(n==0)
+    {
+        return 1;
+    }
+    return n*fact(n-1);
+}
+
+int Combination(int n,int r)
+{
+    if(r==0)
+    {
+        return 1;
+    }
+    int t1 = fact(n);
+    int t2 = fact(r);
+    int t3 = fact(n-r);
+    return t1/(t2*t3);
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter the value of n: ";
+    cin>>n;
+    
+    int r;
+    cout<<"Enter the value of r: ";
+    cin>>r;
+    
+    cout<<Combination(n,r);
+}
