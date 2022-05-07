@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+
+void merge(int A[],int B[],int m,int n,int C[])
+{
+    int i=0,j=0,k=0;
+    while(i<m && j<n)
+    {
+        if(A[i]<B[j])
+        {
+            C[k++] = A[i++];
+        }
+        else
+        {
+            C[k++] = B[j++];
+        }
+    }
+    /*Copying the remaining elements*/
+    while(i<m)
+    {
+        C[k++] = A[i++];
+    }
+    while(j<n)
+    {
+        C[k++] = B[j++];
+    }
+}
+
+void PrintArray(int A[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        cout<<A[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    int A[] = {1,3,5,7};
+    int n1 = sizeof(A)/sizeof(A[0]);
+    int B[] = {2,4,6,8};
+    int n2 = sizeof(B)/sizeof(B[0]);
+    int C[n1+n2];
+    
+    merge(A,B,n1,n2,C);
+    PrintArray(C,n1+n2);
+}
