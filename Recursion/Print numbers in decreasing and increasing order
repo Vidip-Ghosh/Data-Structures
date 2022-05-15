@@ -1,32 +1,34 @@
 #include<iostream>
 using namespace std;
-int dec(int n)
+
+void decreasing(int n)
 {
+    /*base case*/
     if(n==0)
     {
-        return 0;
+        return;
     }
-    cout<<n<<endl;
-    dec(n-1);
+    /*moving towards base case*/
+    cout<<n<<" ";
+    decreasing(n-1);
 }
 
-int inc(int n)
+void increasing(int n)
 {
+    /*base case*/
     if(n==0)
     {
-        return 0;
+        return;
     }
-    inc(n-1);
-    cout<<n<<endl;
+    increasing(n-1);
+    cout<<n<<" ";
 }
 
 int main()
 {
     int n;
-    cout<<"Enter the number of terms: ";
     cin>>n;
-    cout<<"Numbers in decreasing order: "<<endl;
-    dec(n);
-    cout<<"Numbers in increasing order: "<<endl;
-    inc(n);
+    decreasing(n);
+    cout<<endl;
+    increasing(n);
 }
