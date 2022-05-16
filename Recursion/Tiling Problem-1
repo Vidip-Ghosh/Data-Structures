@@ -7,11 +7,12 @@ int getNoOfWays(int n)
     {
         return n;
     }
-    return (n-1)+(n-2);
+    return getNoOfWays(n-1)+getNoOfWays(n-2);
 }
 
 int main()
 {
+    cout<<getNoOfWays(1)<<endl;
     cout<<getNoOfWays(2)<<endl;
     cout<<getNoOfWays(3)<<endl;
     cout<<getNoOfWays(4)<<endl;
