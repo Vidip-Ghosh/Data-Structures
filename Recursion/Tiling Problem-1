@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+
+int getNoOfWays(int n)
+{
+    if(n<=2)    //Base case
+    {
+        return n;
+    }
+    return (n-1)+(n-2);
+}
+
+int main()
+{
+    cout<<getNoOfWays(2)<<endl;
+    cout<<getNoOfWays(3)<<endl;
+    cout<<getNoOfWays(4)<<endl;
+}
