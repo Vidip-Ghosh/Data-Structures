@@ -1,0 +1,34 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void printArray(vector<int> arr,int n)
+{
+    for(auto x:arr)
+    {
+        cout<<x<<" ";
+    }
+    cout<<endl;
+}
+
+void fillArray(vector<int> &arr,int n,int i,int val)
+{
+    if(i==n)    //Base case
+    {
+        printArray(arr,n);
+        return;
+    }
+    //Recursive step
+    arr[i] = val;
+    fillArray(arr,n,i+1,val+1);
+    arr[i] = -1 * arr[i]; /*Backtracking Step*/
+}
+
+int main()
+{
+    vector<int>arr(10,0);
+    int n;
+    cin>>n;
+    fillArray(arr,n,0,1);
+    printArray(arr,n);
+}
