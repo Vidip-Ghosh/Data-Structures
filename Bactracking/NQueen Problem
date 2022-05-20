@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+
+void printBoard(int n,int board[][20])
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<board[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+}
+bool canPlace(int board[][20],int n,int x,int y)
+{
+    for(int k=0;k<x;k++)
+    {
+        //COLUMN
+        if(board[k][y]==1)
+        {
+            return false;
+        }
+    }
+    //LEFT DIAGONAL
+    int i = x;
+    int j = y;
+    while(i>=0 && j>=0)
+    {
+        if(board[i][j]==1)  //QUEEN IS PRESENT
+        {
+            return false;
+        }
+        i--;j--;
+    }
+    //RIGHT DIAGONAL
+    i = x;
+    j = y;
+    while(i>=0 && j<n)
+    {
+        if(board[i][j]==1)  
+        {
+            return false;
+        }
+        i--;j++;
+    }
+    return true;    //Couldn't find the queen in the COLUMN (LEFT and RIGHT DIAGONAL)
+}
+bool SolveNQueen(int n,int board[][20],int i)
+{
+    //Base Case
+    if(i==n){
+        printBoard(n,board);
+        return true;
+    }
+    //Recursive Case-> Try to place a queen in every row.
+    for(int j=0;j<n;j++)
+    {
+        //Whether the current i,j is safe or not.
+        if(canPlace(board,n,i,j))
+        {
+            board[i][j] = 1;
+            bool success = SolveNQueen(n,board,i+1); 
+            if(success){
+                return true;
+            }
+            //Backtrack
+            board[i][j] = 0;
+        }
+    }
+    return false;
+}
+int main()
+{
+    int board[20][20] = {0};
+    int n;
+    cin>>n;
+    SolveNQueen(n,board,0);
+}
