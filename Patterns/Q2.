@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+void printPattern(int n)
+{
+    int i=1,j;
+    while(i<=n)
+    {
+        j=1;
+        while(j<=n)
+        {
+            cout<<n-j+1<<" ";
+            j++;
+        }
+        i++;
+        cout<<endl;
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    printPattern(n);
+}
+
+/*
+4     n=4
+4 3 2 1 
+4 3 2 1 
+4 3 2 1 
+4 3 2 1 
+*/
