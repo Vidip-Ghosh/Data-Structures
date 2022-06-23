@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int num = 5;
+    cout<<"Address of a number: "<<&num<<endl;
+    int *ptr = &num;
+    cout<<"Address of a number: "<<ptr<<endl;
+    cout<<"Value is: "<<*ptr<<endl;
+    cout<<"Value is: "<<num<<endl;
+    
+    double d = 4.3;
+    double *p2 = &d;
+    cout<<"Address is: "<<p2<<endl;
+    cout<<"Value is: "<<*p2<<endl;
+    
+    cout<<"Size of integer: "<<sizeof(num)<<endl;
+    cout<<"Size of pointer: "<<sizeof(ptr)<<endl;
+    
+    /*Null pointer and value access*/
+    int i=5;
+    int *p = 0;
+    int *q = &i;
+    p = &i;
+    cout<<p<<endl;
+    cout<<*p<<endl;
+    cout<<q<<endl;
+    cout<<*q<<endl;
+}
