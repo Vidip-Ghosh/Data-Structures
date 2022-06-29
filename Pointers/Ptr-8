@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+
+void update(int **p)
+{
+    // p = p+1; No change takes place
+    // *p = *p+1; Change takes place
+    **p = **p+1;
+}
+
+int main()
+{
+    int i=5;
+    int* p=&i;
+    int** p2 = &p;
+    
+    cout<<"Printing p: "<<p<<endl;
+    cout<<"Address of p: "<<&p<<endl;
+    cout<<*p2<<endl;
+    cout<<p2<<endl;
+    cout<<i<<endl;
+    cout<<*p<<endl;
+    cout<<**p2<<endl;
+    
+    //After change
+    update(p2);
+    cout<<"Printing p: "<<p<<endl;
+    cout<<"Address of p: "<<&p<<endl;
+    cout<<*p2<<endl;
+    cout<<p2<<endl;
+    cout<<i<<endl;
+    cout<<*p<<endl;
+    cout<<**p2<<endl;
+}
