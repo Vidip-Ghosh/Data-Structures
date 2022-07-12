@@ -1,0 +1,36 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+class Solution{
+    public:
+    vector<int> smallerNumbersThanCurrent(vector<int> &nums)
+    {
+        int n = nums.size(),count = 0;
+        vector<int> ans;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(nums[j]<nums[i] && j!=i)
+                {
+                    count++;
+                }
+            }
+            ans.push_back(count);
+            count = 0;
+        }
+        return ans;
+    }
+};
+
+int main()
+{
+    vector<int> v = {8,1,2,2,3};
+    Solution s;
+    vector<int> var = s.smallerNumbersThanCurrent(v);
+    for(auto x: var)
+    {
+        cout<<x<<" ";
+    }
+}
