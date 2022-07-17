@@ -1,0 +1,18 @@
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+    int val;
+    cout<<"Enter an integer value: ";
+    cin>>val;
+    
+    stringstream sso;
+    sso << val;
+    string strinput;
+    sso >> strinput;
+    
+    cout<<"The integer form is: "<<val<<endl;
+    cout<<"The string form of a integer number: "<<strinput;
+}
