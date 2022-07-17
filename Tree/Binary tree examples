@@ -1,0 +1,102 @@
+#include<iostream>
+using namespace std;
+
+/*Representation of tree*/
+struct TreeNode{
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+};
+
+class TreeNode{
+    public:
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+};
+
+/*Creating a node*/
+TreeNode* createNode()
+{
+    TreeNode* temp = new TreeNode();
+    if(temp == NULL)
+    {
+        return NULL;
+    }
+    temp->data = data;
+    temp->right = temp->left = NULL;
+    return temp;
+}
+
+bool isSameTree(TreeNode* p,TreeNode* q)
+{
+    if(p==NULL && q==NULL)
+    {
+        return true;
+    }
+    if(p==NULL || q==NULL)
+    {
+        return false;
+    }
+    if(p->val != q->val)
+    {
+        return false;
+    }
+    
+    int lh = isSameTree(p->left,q->left);
+    int rh = isSameTree(p->right,q->right);
+    
+    if(lh && rh)
+    {
+        return true;
+    }
+    return false;
+}
+
+int helper(TreeNode* root1,TreeNode* root2)
+{
+    if(root1==NULL || root2==NULL)
+    {
+        return root1 == root2;
+    }
+    if(!helper(root1->left,root2->right))
+    {
+        return 0;
+    }
+    if(!helper(root1->right,root2->left))
+    {
+        return 0;
+    }
+    if(root1->val != root2->val)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+bool isSymmetric(TreeNode* root1,TreeNode* root2)
+{
+    return helper(root1,root2);
+}
+
+int maxDepth(TreeNode* root)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int lDepth = maxDepth(root->left);
+        int rDepth = maxDepth(root->right);
+        
+        if(lDepth > rDepth)
+        {
+            return lDepth + 1;
+        }
+        else
+        {
+            return rDepth + 1;
+        }
+    }
+}
