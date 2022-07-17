@@ -1,0 +1,59 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+// string removeParenthesis(string s)
+// {
+//     string res = "";
+//     int j=0;
+//     for(int i=0;i<s.size();i++)
+//     {
+//         if(s[i]==41)
+//         {
+//             j--;
+//         }
+//         if(j!=0)
+//         {
+//             res = res+s[i];
+//         }
+//         if(s[i]==40)
+//         {
+//             j++;
+//         }
+//     }
+//     return res;
+// }
+
+int main()
+{
+    // string s = "(()())(())";
+    // cout<<removeParenthesis(s);
+    string s;
+    cin>>s;
+    stack<int> st;
+    bool ans = false;
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i]=='+' || s[i]=='-' || s[i]=='/' || s[i]=='*')
+        {
+            st.push(s[i]);
+        }
+        else if(s[i]=='(')
+        {
+            st.push(s[i]);
+        }
+        else if(s[i]==')')
+        {
+            if(st.top()=='(')
+            {
+                ans = true;
+            }
+            while(st.top()=='+' || st.top()=='-' || st.top()=='/' || st.top()=='*')
+            {
+                st.pop();
+            }
+            st.pop();
+        }
+    }
+    cout<<ans;
+}
