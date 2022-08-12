@@ -170,3 +170,49 @@ int main()
         cout<<"Linked list is circular in nature"<<endl;
     }
 }
+
+
+//Printing a circular linked list
+#include <iostream>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* next;
+};
+
+void printCircular(Node* first)
+{
+    Node* temp = first;
+    // if(first!=NULL)
+    // {
+    //     cout<<temp->data<<" ";
+    //     temp = temp->next;  //this changes in temp 
+        
+    //     while(temp!=first)
+    //     {
+    //         cout<<temp->data<<" ";
+    //         temp = temp->next;
+    //     }
+    // }
+    do{
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    while(temp!=first);
+}
+
+int main()
+{
+    Node* head = new Node(); Node* second = new Node(); Node* third = new Node(); 
+    Node* four = new Node(); Node* five = new Node(); Node* six = new Node();
+    
+    head->data = 1; head->next = second;
+    second->data = 2;   second->next = third;
+    third->data = 3;    third->next = four;
+    four->data = 4; four->next = five;
+    five->data = 5; five->next = six;
+    six->data = 6;  six->next = head;
+    
+    printCircular(head);
+}
