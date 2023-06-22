@@ -1,0 +1,49 @@
+//https://practice.geeksforgeeks.org/problems/find-duplicates-in-an-array/1
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+  public:
+    vector<int> duplicates(int arr[], int n) {
+        // unordered_map<int,int> mp;
+        // int duplicateNo = 0;
+        sort(arr,arr+n);
+        vector<int> duplicate;
+        vector<int> freq(n,0);
+        bool flag=false;
+        for(int i=0;i<n;i++)
+        {
+            freq[arr[i]]++;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(freq[i]>1)
+            {
+                // duplicateNo = it.first;
+                flag=true;
+                duplicate.push_back(i);
+            }
+        }
+        if(flag==false)
+        {
+            duplicate.push_back(-1);
+        }
+        return duplicate;
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t-- > 0) {
+        int n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) cin >> a[i];
+        Solution obj;
+        vector<int> ans = obj.duplicates(a, n);
+        for (int i : ans) cout << i << ' ';
+        cout << endl;
+    }
+    return 0;
+}
