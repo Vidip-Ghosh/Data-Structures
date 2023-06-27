@@ -1,0 +1,60 @@
+//https://practice.geeksforgeeks.org/problems/counting-elements-in-two-arrays/1
+#include <bits/stdc++.h>
+ 
+using namespace std;
+
+class Solution{
+  public:
+    int binarySearch(int nums,int arr2[],int n)
+    {
+        int start=0;
+        int end=n-1;
+        while(start<=end)
+        {
+            int mid=start+(end-start)/2;
+            if(nums>=arr2[mid])
+            {
+                start=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+        }
+        return start;
+    }
+    vector<int> countEleLessThanOrEqual(int arr1[], int arr2[], 
+                                 int m, int n)
+    {
+        vector<int> res;
+        sort(arr2,arr2+n);
+        for(int i=0;i<m;i++)
+        {
+            int ans=binarySearch(arr1[i],arr2,n);
+            res.push_back(ans);
+        }
+        return res;
+    }
+};
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m,n;
+        cin>>m>>n;
+        int arr1[m],arr2[n];
+        for(int i=0;i<m;i++)
+        cin>>arr1[i];
+        for(int j=0;j<n;j++)
+        cin>>arr2[j];
+        Solution obj;
+        vector <int> res = obj.countEleLessThanOrEqual(arr1, arr2, m, n);
+        for (int i = 0; i < res.size (); i++) cout << res[i] << " ";
+        
+        cout<<endl;
+    }
+    return 0;
+}
