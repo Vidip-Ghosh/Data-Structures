@@ -1,0 +1,42 @@
+//https://practice.geeksforgeeks.org/problems/power-set4302/1
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+	public:
+		vector<string> AllPossibleStrings(string s){
+		  vector<string> ans;
+      int n=s.length();
+      int till=(1<<n);
+      for(int i=1;i<till;i++)
+      {
+          string v="";
+          for(int bit=0;bit<n;bit++)
+          {
+              if(i & (1<<bit))
+              {
+                  v+=s[bit];
+              }
+          }
+          ans.push_back(v);
+      }
+      sort(ans.begin(),ans.end());
+      return ans;
+		}
+};
+
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		string s;
+		cin >> s;
+		Solution ob;
+		vector<string> res = ob.AllPossibleStrings(s);
+		for(auto i : res)
+			cout << i <<" ";
+		cout << "\n";
+
+	}
+	return 0;
+}
