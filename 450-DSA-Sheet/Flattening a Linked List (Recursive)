@@ -1,0 +1,145 @@
+//https://practice.geeksforgeeks.org/problems/da62a798bca208c7a678c133569c3dc7f5b73500/1
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node * next;
+    struct Node * bottom;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+        bottom = NULL;
+    }
+
+};
+
+void printList(Node *Node)
+{
+    while (Node != NULL)
+    {
+        printf("%d ", Node->data);
+        Node = Node->bottom;
+    }
+}
+
+/* Node structure  used in the program
+
+struct Node{
+	int data;
+	struct Node * next;
+	struct Node * bottom;
+	
+	Node(int x){
+	    data = x;
+	    next = NULL;
+	    bottom = NULL;
+	}
+	
+};
+*/
+
+class Solution {
+public:
+    Node* merge(Node* l1,Node* l2)
+    {
+        Node* result=nullptr;
+        if(l1==nullptr)
+        {
+            return l2;
+        }
+        else if(l2==nullptr)
+        {
+            return l1;
+        }
+        else
+        {
+            if(l1->data < l2->data)
+            {
+                result=l1;
+                result->bottom=merge(l1->bottom,l2);
+            }
+            else
+            {
+                result=l2;
+                result->bottom=merge(l1,l2->bottom);
+            }
+        }
+        result->next=nullptr;
+        return result;
+    }
+    Node *flatten(Node *root)
+    {
+        if(root==nullptr)
+        {
+            return root;
+        }
+        return merge(root,flatten(root->next));
+    }
+};
+
+int main(void) {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m, flag = 1, flag1 = 1;
+        struct Node * temp = NULL;
+        struct Node * head = NULL;
+        struct Node * pre = NULL;
+        struct Node * tempB = NULL;
+        struct Node * preB = NULL;
+        cin >> n;
+        int work[n];
+        for (int i = 0; i < n; i++)
+            cin >> work[i];
+        for (int i = 0; i < n; i++) {
+            m = work[i];
+            --m;
+            int data;
+            scanf("%d", &data);
+            temp = new Node(data);
+            temp->next = NULL;
+            temp->bottom = NULL;
+
+            if (flag) {
+                head = temp;
+                pre = temp;
+                flag = 0;
+                flag1 = 1;
+            }
+            else {
+                pre->next = temp;
+                pre = temp;
+                flag1 = 1;
+            }
+            for (int j = 0; j < m; j++) {
+
+                int temp_data;
+                scanf("%d", &temp_data);
+                tempB = new Node(temp_data);
+
+                if (flag1) {
+                    temp->bottom = tempB;
+                    preB = tempB;
+                    flag1 = 0;
+                }
+                else {
+                    preB->bottom = tempB;
+                    preB = tempB;
+                }
+            }
+        }
+        Node *fun = head;
+        Node *fun2 = head;
+
+        Solution ob;
+        Node* root = ob.flatten(head);
+        printList(root);
+        cout << endl;
+
+    }
+    return 0;
+}
