@@ -1,0 +1,60 @@
+// https://www.codingninjas.com/studio/problems/0-1-knapsack_920542
+#include <bits/stdc++.h> 
+int f(vector<int> &wt,vector<int> &val,int ind,int maxWeight,vector<vector<int>> &dp)
+{
+    if(ind==0)
+    {
+        if(wt[0]<=maxWeight)
+        {
+            return val[0];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    if(dp[ind][maxWeight]!=-1)
+    {
+        return dp[ind][maxWeight];
+    }
+    int notTake=0 + f(wt,val,ind-1,maxWeight,dp);
+    int take=INT_MIN;
+    if(wt[ind]<=maxWeight)
+    {
+        take = val[ind] + f(wt,val,ind-1,maxWeight-wt[ind],dp);   
+    }
+    return dp[ind][maxWeight] = max(take,notTake);
+}
+
+int tab(vector<int> &wt,vector<int> &val,int n,int maxWeight)
+{
+    vector<vector<int>> dp(n,vector<int> (maxWeight+1,0));
+    for(int W=wt[0];W<=maxWeight;W++)
+    {
+        dp[0][W]=val[0];
+    }
+    
+    for(int ind=1;ind<n;ind++)
+    {
+        for(int W=0;W<=maxWeight;W++)
+        {
+            int notTake = 0 + dp[ind-1][W];
+            int take=INT_MIN;
+            if(wt[ind]<=W)
+            {
+                take=val[ind] + dp[ind-1][W-wt[ind]];
+            }
+            dp[ind][W]=max(take,notTake);
+        }
+    }
+    return dp[n-1][maxWeight];
+}
+
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+    // vector<vector<int>> dp(n,vector<int> (maxWeight+1,-1));
+    // return f(weight,value,n-1,maxWeight,dp);
+    
+    vector<vector<int>> dp(n,vector<int> (maxWeight+1,0));
+    return tab(weight,value,n,maxWeight);
+}
