@@ -1,0 +1,40 @@
+int countStudent(vector<int> &arr,int pages,int n)
+{
+    int stu=1;
+    int pagesStudents=0;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]+pagesStudents <= pages)
+        {
+            pagesStudents+=arr[i];
+        }
+        else
+        {
+            stu++;
+            pagesStudents=arr[i];
+        }
+    }
+    return stu;
+}
+int findPages(vector<int>& arr, int n, int m) {
+    if(m>n)
+    {
+        return -1;
+    }
+    int low=*max_element(arr.begin(),arr.end());
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=arr[i];
+    }
+    int high=sum;
+    for(int pages=low;pages<=high;pages++)
+    {
+        int cntStu=countStudent(arr, pages,n);
+        if(cntStu==m)
+        {
+            return pages;
+        }
+    }
+    return -1;
+}
