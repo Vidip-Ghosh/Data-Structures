@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+struct Node
+{   
+    int data;
+    struct Node* next;
+    Node(int data)
+    {
+        this->data=data;
+        next=nullptr;
+    }
+};
+
+struct LinkedList
+{
+    Node* head;
+    LinkedList()
+    {
+        head=nullptr;
+    }
+    void reverseList()
+    {
+        Node* newHead=nullptr;
+        while(head!=nullptr)
+        {
+            Node* next=head->next;
+            head->next=newHead;
+            newHead=head;
+            head=next;
+        }
+        head=newHead;
+    }
+    
+    void print()
+    {
+        Node* temp=head;
+        while(temp!=nullptr)
+        {
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+        cout<<endl;
+    }
+    
+    void push(int data)
+    {
+        Node* temp=new Node(data);
+        temp->next=head;
+        head=temp;
+    }
+};
+
+int main()
+{
+    LinkedList ll;
+    ll.push(20);
+    ll.push(4);
+    ll.push(15);
+    ll.push(85);
+    
+    ll.print();
+    ll.reverseList();
+    ll.print();
+}
