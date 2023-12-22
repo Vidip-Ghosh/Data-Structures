@@ -1,0 +1,50 @@
+//https://www.codingninjas.com/studio/problems/delete-node-in-ll_5881
+
+/****************************************************************
+ 
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+Node *deleteNode(Node *head, int pos)
+{
+    if(head==nullptr)
+	{
+		return head;
+	}
+	if(pos==0)
+	{
+		Node* temp=head;
+		head=head->next;
+		delete temp;
+		return head;
+	}
+	Node* temp=head;
+	Node* prev=nullptr;
+	int cnt=-1;
+	while(temp!=nullptr)
+	{
+		cnt++;
+		if(cnt==pos)
+		{
+			prev->next=prev->next->next;
+			delete temp;
+			break;
+		}
+		prev=temp;
+		temp=temp->next;
+	}
+	return head;
+}
